@@ -1,23 +1,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % System Parameters (Play With These) %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-moment_of_inertia = 10;
-magnet_moment = [0; 0.875; 0];
-earth_moment = [0; 7.94e22; 0];
 
+% Bar Magnet Parameters
+moment_of_inertia = 10;
+magnet_moment = [0; 1; 0];
 initial_position = [0; 2000000; 0];
 initial_velocity = [10000; 1000; 1000];
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
+
+% Earth Parameters
+earth_moment = [0; 7.94e22; 0];
+mass_of_earth = 5.97219e24;
+
 % Universal Constants
 gravitational_constant = 6.67384e-11;
-mass_of_earth = 5.97219e24;
- 
+
 % Simulation Parameters
 number_of_data_points = 500;
 time_step = 5;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-% Output
+% Output Vectors
 x_position = zeros(number_of_data_points, 1);
 y_position = zeros(number_of_data_points, 1);
 z_position = zeros(number_of_data_points, 1);
@@ -80,6 +84,9 @@ for i = 2:number_of_data_points
     quiver3(x_position(i,1), y_position(i,1), z_position(i,1), x_projection(i,1), y_projection(i,1), z_projection(i,1))
     title('Path of the Magnet Around the Earth')
     axis([-2*norm(initial_position) 2*norm(initial_position) -2*norm(initial_position) 2*norm(initial_position) -2*norm(initial_position) 2*norm(initial_position)]);
+    xlabel('x-position')
+    ylabel('y-position')
+    zlabel('z-position')
     F(i-1) = getframe;
 
 end
@@ -88,3 +95,4 @@ quiver3(x_position, y_position, z_position, x_projection, y_projection, z_projec
 title('Path of the Magnet Around the Earth')
 xlabel('x-position')
 ylabel('y-position')
+zlabel('z-position')
